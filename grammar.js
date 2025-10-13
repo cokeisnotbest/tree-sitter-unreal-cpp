@@ -1640,22 +1640,36 @@ module.exports = grammar(C, {
       'DisplayName',
       'ToolTip'
     ),
-    unreal_specifier: $ => choice(
-      $.unreal_specifier_keyword,
-      $.identifier,
-      seq(
-        field('key', choice($.unreal_specifier_keyword, $.identifier)),
-        '=',
-        field('value', choice(
-          $.string_literal,
-          $.parenthesized_expression,
-          $.identifier,
-          $.number_literal,
-          $.true,
-          $.false,
-        )),
-      ),
-    ),
+    unreal_specifier: $ => choice(
+      $.unreal_specifier_keyword,
+      $.identifier,
+      seq(
+        field('key', choice($.unreal_specifier_keyword, $.identifier)),
+        '=',
+        field('value', choice(
+          $.string_literal,
+          alias($.unreal_meta_assignment_group, $.parenthesized_expression), // 新しいエイリアスを導入
+          $.identifier,
+          $.number_literal,
+          $.true,
+          $.false,
+        )),
+      ),
+    ),
+    
+    // 新規追加: meta=(...) の中身を専用のノードでラップ
+    unreal_meta_assignment_group: $ => seq(
+      '(',
+      commaSep1(alias($.unreal_meta_assignment, $.assignment_expression)), // 新しい割り当てノードをエイリアス
+      ')',
+    ),
+
+    // 新規追加: DisplayName="My Cool Character" を専用ノードとして定義
+    unreal_meta_assignment: $ => seq(
+      field('left', alias($.identifier, $.unreal_meta_key)), // <- 最も重要な変更: 新しいノード名
+      '=',
+      field('right', $.string_literal)
+    ),
 
     unreal_specifier_list: $ => commaSep1($.unreal_specifier),
 

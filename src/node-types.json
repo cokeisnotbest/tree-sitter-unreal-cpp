@@ -834,12 +834,16 @@
           {
             "type": "expression",
             "named": true
+          },
+          {
+            "type": "unreal_meta_key",
+            "named": true
           }
         ]
       },
       "operator": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "%=",
@@ -5015,7 +5019,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -9226,6 +9230,10 @@
   {
     "type": "union",
     "named": false
+  },
+  {
+    "type": "unreal_meta_key",
+    "named": true
   },
   {
     "type": "unsigned",
