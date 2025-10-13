@@ -7734,6 +7734,10 @@
             "named": true
           },
           {
+            "type": "splice_type_specifier",
+            "named": true
+          },
+          {
             "type": "template_type",
             "named": true
           },
@@ -7805,6 +7809,10 @@
         "types": [
           {
             "type": "qualified_identifier",
+            "named": true
+          },
+          {
+            "type": "splice_type_specifier",
             "named": true
           },
           {
@@ -7933,6 +7941,10 @@
         "types": [
           {
             "type": "qualified_identifier",
+            "named": true
+          },
+          {
+            "type": "splice_type_specifier",
             "named": true
           },
           {
