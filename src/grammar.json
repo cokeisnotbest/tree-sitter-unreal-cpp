@@ -18743,8 +18743,15 @@
       ]
     },
     "unreal_force_inline": {
-      "type": "STRING",
-      "value": "FORCEINLINE"
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "FORCEINLINE"
+        }
+      }
     }
   },
   "extras": [

@@ -352,3 +352,42 @@ FORCEINLINE bool IsValid(const UObject *Test)
               name: (identifier))
             arguments: (argument_list
               (identifier))))))))
+
+
+===
+FORCEINLINE Member Function Test
+===
+
+class MyClass
+{
+	FORCEINLINE bool Modify(bool bAlwaysMarkDirty = true) { return false; }
+	FORCEINLINE bool IsCapturingAsRootObjectForTransaction() const { return false; };
+};
+
+---
+
+(translation_unit
+  (class_specifier
+    name: (type_identifier)
+    body: (field_declaration_list
+      (function_definition
+        (storage_class_specifier (unreal_force_inline))
+        type: (primitive_type)
+        declarator: (function_declarator
+          declarator: (field_identifier)
+          parameters: (parameter_list
+            (optional_parameter_declaration
+              type: (primitive_type)
+              declarator: (identifier)
+              default_value: (true))))
+        body: (compound_statement
+          (return_statement (false))))
+      (function_definition
+        (storage_class_specifier (unreal_force_inline))
+       type: (primitive_type)
+        declarator: (function_declarator
+          declarator: (field_identifier)
+          parameters: (parameter_list)
+          (type_qualifier))
+        body: (compound_statement
+          (return_statement (false)))))))

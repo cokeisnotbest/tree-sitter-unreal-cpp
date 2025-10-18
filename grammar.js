@@ -1787,7 +1787,7 @@ module.exports = grammar(C, {
       field('arguments', $.argument_list),
       ';'
     ),
-    unreal_force_inline: $ => 'FORCEINLINE',
+    unreal_force_inline: $ => token(prec(1, 'FORCEINLINE')),
     // --- END: UNREAL ENGINE RULES ---
   },
 });
