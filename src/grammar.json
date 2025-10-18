@@ -5655,6 +5655,14 @@
           "name": "unreal_body_macro"
         },
         {
+          "type": "SYMBOL",
+          "name": "unreal_declare_class_macro"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unreal_define_default_object_initializer_macro"
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -18283,6 +18291,69 @@
         {
           "type": "STRING",
           "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "unreal_declare_class_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "DECLARE_CLASS"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "expression"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "unreal_define_default_object_initializer_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "STRING",

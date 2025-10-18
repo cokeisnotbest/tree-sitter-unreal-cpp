@@ -547,7 +547,9 @@ module.exports = grammar(C, {
     )),
 
     _field_declaration_list_item: ($, original) => choice(
-      $.unreal_body_macro, // <<< 追加
+      $.unreal_body_macro,
+      $.unreal_declare_class_macro,
+      $.unreal_define_default_object_initializer_macro,
       original,
       $.template_declaration,
       alias($.inline_method_definition, $.function_definition),
@@ -1692,6 +1694,18 @@ module.exports = grammar(C, {
    unreal_body_macro: $ => seq('GENERATED_BODY', '(', ')'),
     // ↑↑↑ ここまでが今回の修正箇所です ↑↑↑
 
+    unreal_declare_class_macro: $ => seq(
+      'DECLARE_CLASS',
+      '(',
+      commaSep1($.expression),
+      ')'
+    ),
+    unreal_define_default_object_initializer_macro: $ => seq(
+      'DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL',
+      '(',
+      $.identifier,
+      ')'
+    ),
     uproperty_macro: $ => seq('UPROPERTY', '(', field('specifiers', optional($.unreal_specifier_list)), ')'),
     ufunction_macro: $ => seq('UFUNCTION', '(', field('specifiers', optional($.unreal_specifier_list)), ')'),
 

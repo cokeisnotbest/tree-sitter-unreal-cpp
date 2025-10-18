@@ -2969,6 +2969,14 @@
           "named": true
         },
         {
+          "type": "unreal_declare_class_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
           "type": "using_declaration",
           "named": true
         }
@@ -5418,6 +5426,14 @@
           "named": true
         },
         {
+          "type": "unreal_declare_class_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
           "type": "using_declaration",
           "named": true
         }
@@ -5562,6 +5578,14 @@
           "named": true
         },
         {
+          "type": "unreal_declare_class_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
           "type": "using_declaration",
           "named": true
         }
@@ -5674,6 +5698,14 @@
         },
         {
           "type": "unreal_body_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_declare_class_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_define_default_object_initializer_macro",
           "named": true
         },
         {
@@ -5885,6 +5917,14 @@
           "named": true
         },
         {
+          "type": "unreal_declare_class_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
           "type": "using_declaration",
           "named": true
         }
@@ -6026,6 +6066,14 @@
         },
         {
           "type": "unreal_body_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_declare_class_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_define_default_object_initializer_macro",
           "named": true
         },
         {
@@ -7772,6 +7820,36 @@
     }
   },
   {
+    "type": "unreal_declare_class_macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unreal_define_default_object_initializer_macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "unreal_enum_declaration",
     "named": true,
     "fields": {
@@ -8492,6 +8570,14 @@
   },
   {
     "type": "Config",
+    "named": false
+  },
+  {
+    "type": "DECLARE_CLASS",
+    "named": false
+  },
+  {
+    "type": "DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL",
     "named": false
   },
   {
