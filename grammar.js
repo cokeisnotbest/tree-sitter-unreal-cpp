@@ -117,6 +117,7 @@ module.exports = grammar(C, {
   ],
 
   rules: {
+
     _top_level_item: ($, original) => choice(
       //start unreal engien
       $.unreal_class_declaration,
@@ -147,6 +148,23 @@ module.exports = grammar(C, {
       $.unreal_declaration_macro,
       //unreal
     ),
+
+    preproc_directive: ($, original) => choice(
+      // #pragma 専用のルール
+      seq(
+        '#',
+        // 'pragma' という文字列を 'identifier' として扱う
+        alias($._pragma_directive_identifier, $.identifier),
+        // 新しく作る '_pragma_argument' トークンを 'preproc_arg' としてエイリアスする
+        optional(alias($._pragma_argument, $.preproc_arg)),
+        '\n'
+      ),
+      // #pragma 以外のディレクティブは、オリジナルのC文法に任せる
+      original 
+    ),
+    _pragma_directive_identifier: _ => 'pragma',
+
+
     _block_item: ($, original) => choice(
       ...original.members.filter((member) => member.content?.name != '_old_style_function_definition'),
       $.namespace_definition,
@@ -1789,6 +1807,8 @@ module.exports = grammar(C, {
     ),
     unreal_force_inline: $ => token(prec(1, 'FORCEINLINE')),
     // --- END: UNREAL ENGINE RULES ---
+    //
+    _pragma_argument: _ => token.immediate(prec(-1, /.*/)),
   },
 });
 

@@ -3953,6 +3953,11 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "if_statement",
     "named": true,
     "fields": {
@@ -5271,6 +5276,25 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "preproc_directive",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "preproc_arg",
           "named": true
         }
       ]
@@ -8401,6 +8425,10 @@
     "named": false
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
     "type": "#define",
     "named": false
   },
@@ -9146,10 +9174,6 @@
     "named": false
   },
   {
-    "type": "identifier",
-    "named": true
-  },
-  {
     "type": "if",
     "named": false
   },
@@ -9250,11 +9274,11 @@
     "named": false
   },
   {
-    "type": "preproc_arg",
-    "named": true
+    "type": "pragma",
+    "named": false
   },
   {
-    "type": "preproc_directive",
+    "type": "preproc_arg",
     "named": true
   },
   {

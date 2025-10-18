@@ -391,3 +391,21 @@ class MyClass
           (type_qualifier))
         body: (compound_statement
           (return_statement (false)))))))
+
+
+===
+Pragma Directive Test
+===
+
+#pragma once
+#pragma warning(disable: 4996)
+
+---
+
+(translation_unit
+  (preproc_call
+    directive: (preproc_directive)
+    argument: (preproc_arg))
+  (preproc_call
+    directive: (preproc_directive)
+    argument: (preproc_arg)))

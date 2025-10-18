@@ -2084,8 +2084,52 @@
       }
     },
     "preproc_directive": {
-      "type": "PATTERN",
-      "value": "#[ \\t]*[a-zA-Z0-9]\\w*"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "#"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_pragma_directive_identifier"
+              },
+              "named": true,
+              "value": "identifier"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_pragma_argument"
+                  },
+                  "named": true,
+                  "value": "preproc_arg"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "\n"
+            }
+          ]
+        },
+        {
+          "type": "PATTERN",
+          "value": "#[ \\t]*[a-zA-Z0-9]\\w*"
+        }
+      ]
     },
     "_preproc_expression": {
       "type": "CHOICE",
@@ -11301,6 +11345,10 @@
         ]
       }
     },
+    "_pragma_directive_identifier": {
+      "type": "STRING",
+      "value": "pragma"
+    },
     "placeholder_type_specifier": {
       "type": "PREC",
       "value": 1,
@@ -18750,6 +18798,17 @@
         "content": {
           "type": "STRING",
           "value": "FORCEINLINE"
+        }
+      }
+    },
+    "_pragma_argument": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": -1,
+        "content": {
+          "type": "PATTERN",
+          "value": ".*"
         }
       }
     }
