@@ -317,3 +317,38 @@ class MyTestClass
         name: (identifier)
         arguments: (argument_list
         (identifier))))))
+
+
+===
+FORCEINLINE Macro Test
+===
+
+FORCEINLINE bool IsValid(const UObject *Test)
+{
+	return Test && FInternalUObjectBaseUtilityIsValidFlagsChecker::CheckObjectValidBasedOnItsFlags(Test);
+}
+
+---
+
+(translation_unit
+  (function_definition
+    (storage_class_specifier (unreal_force_inline))
+    type: (primitive_type)
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list
+        (parameter_declaration
+          (type_qualifier)
+           type: (type_identifier)
+          declarator: (pointer_declarator
+            declarator: (identifier)))))
+    body: (compound_statement
+      (return_statement
+        (binary_expression
+          left: (identifier)
+          right: (call_expression
+            function: (qualified_identifier
+              scope: (namespace_identifier)
+              name: (identifier))
+            arguments: (argument_list
+              (identifier))))))))

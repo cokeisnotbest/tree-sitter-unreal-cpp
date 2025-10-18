@@ -6713,6 +6713,10 @@
         {
           "type": "unreal_api_specifier",
           "named": true
+        },
+        {
+          "type": "unreal_force_inline",
+          "named": true
         }
       ]
     }
@@ -9399,6 +9403,10 @@
   },
   {
     "type": "unreal_api_specifier",
+    "named": true
+  },
+  {
+    "type": "unreal_force_inline",
     "named": true
   },
   {

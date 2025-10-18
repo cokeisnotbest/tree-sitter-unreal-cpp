@@ -4933,6 +4933,10 @@
         {
           "type": "SYMBOL",
           "name": "unreal_api_specifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unreal_force_inline"
         }
       ]
     },
@@ -18737,6 +18741,10 @@
           "value": ";"
         }
       ]
+    },
+    "unreal_force_inline": {
+      "type": "STRING",
+      "value": "FORCEINLINE"
     }
   },
   "extras": [

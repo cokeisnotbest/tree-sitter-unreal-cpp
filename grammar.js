@@ -356,7 +356,10 @@ module.exports = grammar(C, {
     storage_class_specifier: ($, original) => choice(
       ...original.members.filter((member) => member.value !== 'auto'),
       'thread_local',
+      //unreal
       $.unreal_api_specifier, // <-- これを追加
+      $.unreal_force_inline, // <<< これを追加
+      //unreal
     ),
 
     dependent_type: $ => prec.dynamic(-1, prec.right(seq(
@@ -1784,6 +1787,7 @@ module.exports = grammar(C, {
       field('arguments', $.argument_list),
       ';'
     ),
+    unreal_force_inline: $ => 'FORCEINLINE',
     // --- END: UNREAL ENGINE RULES ---
   },
 });
