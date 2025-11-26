@@ -609,6 +609,7 @@ module.exports = grammar(C, {
       $.unreal_struct_declaration,
       $.unreal_class_declaration,
       $.unreal_function_declaration, // <--- これを追加！
+      $.unreal_pragma_macro,
       // ▲▲▲ 追加完了 ▲▲▲
       original,
       $.template_declaration,

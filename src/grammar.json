@@ -5759,6 +5759,10 @@
           "name": "unreal_function_declaration"
         },
         {
+          "type": "SYMBOL",
+          "name": "unreal_pragma_macro"
+        },
+        {
           "type": "CHOICE",
           "members": [
             {

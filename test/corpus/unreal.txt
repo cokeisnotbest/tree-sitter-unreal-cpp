@@ -714,3 +714,31 @@ class MyClass {
               (type_identifier)
               (pointer_declarator
                 (identifier)))))))))
+
+
+=========================================
+Unreal Engine: PRAGMA inside class
+=========================================
+class MyClass {
+    PRAGMA_DISABLE_DEPRECATION_WARNINGS
+    UE_DEPRECATED(5.6, "Use PreDuplicateFromRoot instead.")
+    virtual void PopulatePIEDuplicationSeed(FDuplicationSeedInterface& DupSeed) {}
+    PRAGMA_ENABLE_DEPRECATION_WARNINGS
+};
+---
+(translation_unit
+  (class_specifier
+    (type_identifier)
+    (field_declaration_list
+      (unreal_pragma_macro)
+      (function_definition
+        (unreal_deprecated_macro
+          (number_literal)
+          (string_literal (string_content)))
+        (primitive_type)
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+             (parameter_declaration (type_identifier) (reference_declarator (identifier)))))
+        (compound_statement))
+      (unreal_pragma_macro))))

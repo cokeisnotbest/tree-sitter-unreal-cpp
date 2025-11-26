@@ -3035,6 +3035,10 @@
           "named": true
         },
         {
+          "type": "unreal_pragma_macro",
+          "named": true
+        },
+        {
           "type": "unreal_struct_declaration",
           "named": true
         },
