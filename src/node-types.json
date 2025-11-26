@@ -909,7 +909,7 @@
       },
       "right": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "expression",
@@ -2912,10 +2912,6 @@
           "named": true
         },
         {
-          "type": "ufunction_macro",
-          "named": true
-        },
-        {
           "type": "unreal_deprecated_macro",
           "named": true
         },
@@ -2999,6 +2995,10 @@
           "named": true
         },
         {
+          "type": "unreal_class_declaration",
+          "named": true
+        },
+        {
           "type": "unreal_declaration_macro",
           "named": true
         },
@@ -3008,6 +3008,18 @@
         },
         {
           "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_enum_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_function_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_struct_declaration",
           "named": true
         },
         {
@@ -5496,6 +5508,10 @@
           "named": true
         },
         {
+          "type": "unreal_class_declaration",
+          "named": true
+        },
+        {
           "type": "unreal_declaration_macro",
           "named": true
         },
@@ -5505,6 +5521,18 @@
         },
         {
           "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_enum_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_function_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_struct_declaration",
           "named": true
         },
         {
@@ -5652,6 +5680,10 @@
           "named": true
         },
         {
+          "type": "unreal_class_declaration",
+          "named": true
+        },
+        {
           "type": "unreal_declaration_macro",
           "named": true
         },
@@ -5661,6 +5693,18 @@
         },
         {
           "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_enum_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_function_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_struct_declaration",
           "named": true
         },
         {
@@ -5779,6 +5823,10 @@
           "named": true
         },
         {
+          "type": "unreal_class_declaration",
+          "named": true
+        },
+        {
           "type": "unreal_declaration_macro",
           "named": true
         },
@@ -5788,6 +5836,18 @@
         },
         {
           "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_enum_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_function_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_struct_declaration",
           "named": true
         },
         {
@@ -5999,6 +6059,10 @@
           "named": true
         },
         {
+          "type": "unreal_class_declaration",
+          "named": true
+        },
+        {
           "type": "unreal_declaration_macro",
           "named": true
         },
@@ -6008,6 +6072,18 @@
         },
         {
           "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_enum_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_function_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_struct_declaration",
           "named": true
         },
         {
@@ -6155,6 +6231,10 @@
           "named": true
         },
         {
+          "type": "unreal_class_declaration",
+          "named": true
+        },
+        {
           "type": "unreal_declaration_macro",
           "named": true
         },
@@ -6164,6 +6244,18 @@
         },
         {
           "type": "unreal_define_default_object_initializer_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_enum_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_function_declaration",
+          "named": true
+        },
+        {
+          "type": "unreal_struct_declaration",
           "named": true
         },
         {
@@ -8063,6 +8155,78 @@
       "types": [
         {
           "type": "uenum_macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unreal_function_declaration",
+    "named": true,
+    "fields": {
+      "declarator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_field_declarator",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_specifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_declaration",
+          "named": true
+        },
+        {
+          "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "default_method_clause",
+          "named": true
+        },
+        {
+          "type": "delete_method_clause",
+          "named": true
+        },
+        {
+          "type": "ms_declspec_modifier",
+          "named": true
+        },
+        {
+          "type": "pure_virtual_clause",
+          "named": true
+        },
+        {
+          "type": "storage_class_specifier",
+          "named": true
+        },
+        {
+          "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "ufunction_macro",
+          "named": true
+        },
+        {
+          "type": "unreal_deprecated_macro",
           "named": true
         }
       ]

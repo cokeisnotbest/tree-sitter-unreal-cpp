@@ -596,6 +596,12 @@ module.exports = grammar(C, {
       $.unreal_body_macro,
       $.unreal_declare_class_macro,
       $.unreal_define_default_object_initializer_macro,
+// ▼▼▼ 追加: UENUM, USTRUCT, UCLASS, UFUNCTION を許可 ▼▼▼
+      $.unreal_enum_declaration,
+      $.unreal_struct_declaration,
+      $.unreal_class_declaration,
+      $.unreal_function_declaration, // <--- これを追加！
+      // ▲▲▲ 追加完了 ▲▲▲
       original,
       $.template_declaration,
       alias($.inline_method_definition, $.function_definition),
@@ -617,10 +623,17 @@ module.exports = grammar(C, {
       //unreal
     ),
 
+    // ---------------------------------------------------------
+    // 2. field_declaration から ufunction_macro を削除
+    // ---------------------------------------------------------
     field_declaration: $ => seq(
       //unreal
       optional($.unreal_deprecated_macro),
-      optional(choice($.uproperty_macro, $.ufunction_macro)),
+      
+      // ▼▼▼ 修正: ここから $.ufunction_macro を削除 (UPROPERTY専用にする) ▼▼▼
+      optional($.uproperty_macro),
+      // ▲▲▲ 修正完了 ▲▲▲
+
       //unreal
       $._declaration_specifiers,
       commaSep(seq(
@@ -634,7 +647,22 @@ module.exports = grammar(C, {
       optional($.attribute_specifier),
       ';',
     ),
-
+    // ---------------------------------------------------------
+    // 3. 新規追加: UFUNCTION 専用の宣言ルール (プロトタイプ)
+    // ---------------------------------------------------------
+    unreal_function_declaration: $ => seq(
+      optional($.unreal_deprecated_macro),
+      $.ufunction_macro,
+      $._declaration_specifiers,
+      field('declarator', $._field_declarator),
+      optional($.attribute_specifier),
+      optional(choice(
+         $.default_method_clause,
+         $.delete_method_clause,
+         $.pure_virtual_clause
+      )),
+      ';'
+    ),
     inline_method_definition: $ => prec(1, seq(
       //unreal
       optional($.unreal_deprecated_macro),
@@ -1705,22 +1733,29 @@ module.exports = grammar(C, {
       'DisplayName',
       'ToolTip'
     ),
-    unreal_specifier: $ => choice(
-      $.unreal_specifier_keyword,
-      $.identifier,
-      seq(
-        field('key', choice($.unreal_specifier_keyword, $.identifier)),
-        '=',
-        field('value', choice(
-          $.string_literal,
-          alias($.unreal_meta_assignment_group, $.parenthesized_expression), // 新しいエイリアスを導入
-          $.identifier,
-          $.number_literal,
-          $.true,
-          $.false,
-        )),
-      ),
-    ),
+// ---------------------------------------------------------
+    // 修正箇所 1: unreal_specifier の順序変更
+    // ---------------------------------------------------------
+    unreal_specifier: $ => choice(
+      // ▼▼▼ 修正: Key=Value パターンを先に持ってくる ▼▼▼
+      seq(
+        field('key', choice($.unreal_specifier_keyword, $.identifier)),
+        '=',
+        field('value', choice(
+          $.string_literal,
+          alias($.unreal_meta_assignment_group, $.parenthesized_expression),
+          $.identifier,
+          $.number_literal,
+          $.true,
+          $.false,
+        )),
+      ),
+      // ▲▲▲ 修正完了 ▲▲▲
+
+      // 単独のキーワードは後にする
+      $.unreal_specifier_keyword,
+      $.identifier
+    ),
     
     // 新規追加: meta=(...) の中身を専用のノードでラップ
     unreal_meta_assignment_group: $ => seq(
@@ -1729,12 +1764,26 @@ module.exports = grammar(C, {
       ')',
     ),
 
-    // 新規追加: DisplayName="My Cool Character" を専用ノードとして定義
-    unreal_meta_assignment: $ => seq(
-      field('left', alias($.identifier, $.unreal_meta_key)), // <- 最も重要な変更: 新しいノード名
-      '=',
-      field('right', $.string_literal)
-    ),
+// ---------------------------------------------------------
+    // 修正箇所 2: unreal_meta_assignment で単独キーを許可
+    // ---------------------------------------------------------
+    unreal_meta_assignment: $ => choice(
+      // ▼▼▼ 修正: Bitflags (値なしキー) を許可する ▼▼▼
+      seq(
+        field('left', alias($.identifier, $.unreal_meta_key)),
+        '=',
+        field('right', choice(
+          $.string_literal,
+          $.identifier,
+          $.number_literal,
+          $.true,
+          $.false
+        ))
+      ),
+      // 値なしパターン (例: meta=(Bitflags))
+      field('left', alias($.identifier, $.unreal_meta_key))
+      // ▲▲▲ 修正完了 ▲▲▲
+    ),
 
     unreal_specifier_list: $ => commaSep1($.unreal_specifier),
 
@@ -1750,6 +1799,7 @@ module.exports = grammar(C, {
       optional($.unreal_specifier_list),
       ')'
     ),
+
     
 
     // 1. セミコロンを含まない基本ルールを定義（名前の先頭に_を追加）

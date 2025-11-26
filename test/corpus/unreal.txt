@@ -112,7 +112,7 @@ protected:
                     (string_content)))))
             type: (type_identifier)
         declarator: (field_identifier))
-      (field_declaration
+    (unreal_function_declaration
         (ufunction_macro
    
        specifiers: (unreal_specifier_list
@@ -525,3 +525,99 @@ enum class ESpawnActorScaleMethod : uint8
           (unreal_specifier_list
             (unreal_specifier
               (identifier))))))))
+
+
+
+=====
+Meta Specifiers Types Test
+===
+
+UCLASS(meta=(DisplayName="MyClass", IsAbstract=true, MyID=10, Tag=Actor))
+class AMyClass : public AActor
+{
+	GENERATED_BODY()
+
+	UPROPERTY(meta=(ClampMin=0, ClampMax="100.0", AllowPrivateAccess=true))
+	float Health;
+
+	UENUM(meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor=true))
+	enum class EFlags
+	{
+		None UMETA(Hidden),
+		One  UMETA(DisplayName="One"),
+	};
+};
+
+---
+
+(translation_unit
+  (unreal_class_declaration
+    (uclass_macro
+      specifiers: (unreal_specifier_list
+        (unreal_specifier
+          key: (unreal_specifier_keyword)
+          value: (parenthesized_expression
+                (assignment_expression
+                  left: (unreal_meta_key)
+                  right: (string_literal
+                    (string_content)))
+                (assignment_expression
+                  left: (unreal_meta_key)
+                  right: (true))
+                (assignment_expression
+                  left: (unreal_meta_key)
+                  right: (number_literal))
+                (assignment_expression
+                  left: (unreal_meta_key)
+                  right: (identifier))))))
+    name: (type_identifier)
+    (base_class_clause
+      (access_specifier)
+      (type_identifier))
+    body: (field_declaration_list
+      (unreal_body_macro)
+      (field_declaration
+        (uproperty_macro
+          specifiers: (unreal_specifier_list
+            (unreal_specifier
+              key: (unreal_specifier_keyword)
+              value: (parenthesized_expression
+                    (assignment_expression
+                      left: (unreal_meta_key)
+                      right: (number_literal))
+                    (assignment_expression
+                      left: (unreal_meta_key)
+                      right: (string_literal
+                        (string_content)))
+                    (assignment_expression
+                      left: (unreal_meta_key)
+                      right: (true))))))
+        type: (primitive_type)
+        declarator: (field_identifier))
+      (unreal_enum_declaration
+        (uenum_macro
+          specifiers: (unreal_specifier_list
+            (unreal_specifier
+              key: (unreal_specifier_keyword)
+              value: (parenthesized_expression
+                    (assignment_expression
+                      left: (unreal_meta_key))
+                    (assignment_expression
+                      left: (unreal_meta_key)
+                      right: (true))))))
+        name: (type_identifier)
+        body: (enumerator_list
+          (enumerator
+            name: (identifier)
+            (umeta_macro
+              (unreal_specifier_list
+                (unreal_specifier
+                (identifier)))))
+          (enumerator
+            name: (identifier)
+            (umeta_macro
+              (unreal_specifier_list
+                (unreal_specifier
+                  key: (unreal_specifier_keyword)
+                  value: (string_literal
+                (string_content)))))))))))

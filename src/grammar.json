@@ -5731,6 +5731,22 @@
           "name": "unreal_define_default_object_initializer_macro"
         },
         {
+          "type": "SYMBOL",
+          "name": "unreal_enum_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unreal_struct_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unreal_class_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unreal_function_declaration"
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -5884,17 +5900,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "uproperty_macro"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "ufunction_macro"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "uproperty_macro"
             },
             {
               "type": "BLANK"
@@ -12892,6 +12899,80 @@
         ]
       }
     },
+    "unreal_function_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "unreal_deprecated_macro"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ufunction_macro"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_declaration_specifiers"
+        },
+        {
+          "type": "FIELD",
+          "name": "declarator",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_field_declarator"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_specifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "default_method_clause"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "delete_method_clause"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "pure_virtual_clause"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
     "inline_method_definition": {
       "type": "PREC",
       "value": 1,
@@ -18135,14 +18216,6 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "unreal_specifier_keyword"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
           "type": "SEQ",
           "members": [
             {
@@ -18205,6 +18278,14 @@
               }
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unreal_specifier_keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         }
       ]
     },
@@ -18257,8 +18338,59 @@
       ]
     },
     "unreal_meta_assignment": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "left",
+              "content": {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                "named": true,
+                "value": "unreal_meta_key"
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "FIELD",
+              "name": "right",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "string_literal"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "number_literal"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "true"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "false"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         {
           "type": "FIELD",
           "name": "left",
@@ -18270,18 +18402,6 @@
             },
             "named": true,
             "value": "unreal_meta_key"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "="
-        },
-        {
-          "type": "FIELD",
-          "name": "right",
-          "content": {
-            "type": "SYMBOL",
-            "name": "string_literal"
           }
         }
       ]
