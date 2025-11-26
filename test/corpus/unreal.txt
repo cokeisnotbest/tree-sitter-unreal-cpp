@@ -652,3 +652,65 @@ void MyFunction()
           function: (identifier)
           arguments: (argument_list)))
       (unreal_pragma_macro))))
+
+
+=========================================
+Unreal Engine: UE_DEPRECATED and UPROPERTY
+=========================================
+class MyClass {
+  UE_DEPRECATED(5.5, "Public access to NetCullDistanceSquared has been deprecated. Use SetNetCullDistanceSquared() and GetNetCullDistanceSquared() instead.")
+  UPROPERTY(Category=Replication, EditDefaultsOnly, BlueprintReadWrite, meta=(AllowPrivateAccess=true), BlueprintGetter=GetNetCullDistanceSquared, BlueprintSetter=SetNetCullDistanceSquared)
+  float NetCullDistanceSquared;
+
+  UE_DEPRECATED(5.1, "Convert DataLayer using UDataLayerToAssetCommandlet and use AddDataLayer(UDataLayerInstance*)")
+  ENGINE_API bool AddDataLayer(const UDEPRECATED_DataLayer* DataLayer);
+};
+---
+(translation_unit
+  (class_specifier
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (unreal_deprecated_macro
+          (number_literal)
+          (string_literal
+            (string_content)))
+        (uproperty_macro
+          (unreal_specifier_list
+            (unreal_specifier
+              (unreal_specifier_keyword)
+              (identifier))
+            (unreal_specifier
+              (unreal_specifier_keyword))
+            (unreal_specifier
+              (unreal_specifier_keyword))
+            (unreal_specifier
+                  (unreal_specifier_keyword)
+                  (parenthesized_expression
+                    (assignment_expression
+                  (unreal_meta_key)
+                  (true))))
+            (unreal_specifier
+              (identifier)
+              (identifier))
+            (unreal_specifier
+             (identifier)
+              (identifier))))
+        (primitive_type)
+        (field_identifier))
+      (field_declaration
+        (unreal_deprecated_macro
+          (number_literal)
+          (string_literal
+            (string_content)))
+        (storage_class_specifier
+          (unreal_api_specifier))
+        (primitive_type)
+        (function_declarator
+          (field_identifier)
+          (parameter_list
+            (parameter_declaration
+              (type_qualifier)
+              (type_identifier)
+              (pointer_declarator
+                (identifier)))))))))

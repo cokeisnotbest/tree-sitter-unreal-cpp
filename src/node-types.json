@@ -2685,6 +2685,10 @@
         {
           "type": "type_qualifier",
           "named": true
+        },
+        {
+          "type": "unreal_deprecated_macro",
+          "named": true
         }
       ]
     }
@@ -3443,6 +3447,10 @@
         },
         {
           "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "unreal_deprecated_macro",
           "named": true
         }
       ]
@@ -4856,6 +4864,10 @@
         {
           "type": "type_qualifier",
           "named": true
+        },
+        {
+          "type": "unreal_deprecated_macro",
+          "named": true
         }
       ]
     }
@@ -4936,6 +4948,10 @@
         },
         {
           "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "unreal_deprecated_macro",
           "named": true
         }
       ]
@@ -5018,6 +5034,10 @@
         },
         {
           "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "unreal_deprecated_macro",
           "named": true
         }
       ]
@@ -7260,6 +7280,10 @@
         {
           "type": "type_qualifier",
           "named": true
+        },
+        {
+          "type": "unreal_deprecated_macro",
+          "named": true
         }
       ]
     }
@@ -8598,6 +8622,10 @@
         },
         {
           "type": "type_qualifier",
+          "named": true
+        },
+        {
+          "type": "unreal_deprecated_macro",
           "named": true
         }
       ]

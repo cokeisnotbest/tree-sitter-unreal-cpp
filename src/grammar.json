@@ -3345,6 +3345,10 @@
         {
           "type": "STRING",
           "value": "virtual"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unreal_deprecated_macro"
         }
       ]
     },
@@ -19205,6 +19209,10 @@
     [
       "storage_class_specifier",
       "_constructor_specifiers"
+    ],
+    [
+      "declaration",
+      "_declaration_modifiers"
     ]
   ],
   "precedences": [

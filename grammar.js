@@ -106,7 +106,10 @@ module.exports = grammar(C, {
     // [$.storage_class_specifier, $.expression],
     [$.storage_class_specifier, $.expression, $._constructor_specifiers],
     [$.storage_class_specifier, $._constructor_specifiers],
-    //
+  // ▼▼▼ 追加: UE_DEPRECATED の競合解決 ▼▼▼
+    [$.declaration, $._declaration_modifiers],
+    // [$.field_declaration, $._declaration_modifiers], 
+    // ▲▲▲ 追加完了 ▲▲▲  //
   ],
 
   inline: ($, original) => original.concat([
@@ -337,7 +340,7 @@ module.exports = grammar(C, {
       original,
       'virtual',
       // ▼▼▼ 追加: あらゆる宣言で DEPRECATED マクロを許可する ▼▼▼
-      // $.unreal_deprecated_macro,
+      $.unreal_deprecated_macro,
       // ▲▲▲ 追加完了 ▲▲▲
     ),
 
