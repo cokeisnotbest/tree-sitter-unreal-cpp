@@ -8152,16 +8152,27 @@
   {
     "type": "unreal_deprecated_macro",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
+    "fields": {
+      "message": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "version": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number_literal",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -8973,6 +8984,10 @@
   },
   {
     "type": "DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL",
+    "named": false
+  },
+  {
+    "type": "DEPRECATED",
     "named": false
   },
   {
