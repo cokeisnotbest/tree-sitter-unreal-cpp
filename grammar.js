@@ -1872,14 +1872,14 @@ module.exports = grammar(C, {
       ';'
     )),
 
-    unreal_deprecated_macro: $ => seq(
-        'UE_DEPRECATED',
+    unreal_deprecated_macro: $ => prec(10, seq(
+        choice('UE_DEPRECATED', 'DEPRECATED'),
         '(',
-        $.expression, // 5.1 などをパース
+        field('version', $.number_literal), // 识别 4.18
         ',',
-        $.string_literal,
+        field('message', $.string_literal), // 识别 "Message"
         ')'
-    ),
+    )),
 
     // DECLARE_FUNCTION(...); ENUM_CLASS_FLAGS(...); などをキャッチ
 

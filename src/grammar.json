@@ -18936,33 +18936,54 @@
       }
     },
     "unreal_deprecated_macro": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "UE_DEPRECATED"
-        },
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression"
-        },
-        {
-          "type": "STRING",
-          "value": ","
-        },
-        {
-          "type": "SYMBOL",
-          "name": "string_literal"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
+      "type": "PREC",
+      "value": 10,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "UE_DEPRECATED"
+              },
+              {
+                "type": "STRING",
+                "value": "DEPRECATED"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "FIELD",
+            "name": "version",
+            "content": {
+              "type": "SYMBOL",
+              "name": "number_literal"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": ","
+          },
+          {
+            "type": "FIELD",
+            "name": "message",
+            "content": {
+              "type": "SYMBOL",
+              "name": "string_literal"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          }
+        ]
+      }
     },
     "unreal_declaration_macro": {
       "type": "SEQ",
